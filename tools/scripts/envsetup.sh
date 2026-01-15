@@ -938,8 +938,6 @@ function uncompress_toolchain_linux() {
     RV64_TOOLCHAIN_URL="https://github.com/aloncpp/r128_sdk/releases/download/toolchains/riscv64-elf-x86_64-20201104.tar.gz"
     ARM_TOOLCHAIN_URL="https://github.com/aloncpp/r128_sdk/releases/download/toolchains/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2"
     MELISA_TOOLCHAIN_URL="https://github.com/aloncpp/r128_sdk/releases/download/toolchains/gcc-arm-melis-eabi-8-2019-q3-update-linux.tar.bz2"
-    export http_proxy="http://172.20.144.1:7788"
-    export https_proxy="https://172.20.144.1:7788"
     
     if [ "x${RTOS_TARGET_ARCH}" == "xriscv"  ];then
         if [ ! -f "${T}/lichee/rtos/tools/riscv64-elf-x86_64-20201104/.time" ]; then
@@ -952,7 +950,7 @@ function uncompress_toolchain_linux() {
                     rm ${T}/lichee/rtos/tools/riscv64-elf-x86_64-20201104.tar.gz
                 fi
 
-                wget $RV64_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/riscv64-elf-x86_64-20201104.tar.gz
+                wget --no-proxy $RV64_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/riscv64-elf-x86_64-20201104.tar.gz
 
                 if [ $? == 0 ]; then
                     touch ${T}/lichee/rtos/tools/.riscv64-elf-x86_64-20201104.tar.gz.flag
@@ -983,7 +981,7 @@ function uncompress_toolchain_linux() {
                         rm ${T}/lichee/rtos/tools/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
                     fi
 
-                    wget $ARM_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
+                    wget --no-proxy $ARM_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2
 
                     if [ $? == 0 ]; then
                         touch ${T}/lichee/rtos/tools/.gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2.flag
@@ -1010,7 +1008,7 @@ function uncompress_toolchain_linux() {
                         rm ${T}/lichee/rtos/tools/gcc-arm-melis-eabi-8-2019-q3-update-linux.tar.bz2
                     fi
 
-                    wget $MELISA_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/gcc-arm-melis-eabi-8-2019-q3-update-linux.tar.bz2
+                    wget --no-proxy $MELISA_TOOLCHAIN_URL -O ${T}/lichee/rtos/tools/gcc-arm-melis-eabi-8-2019-q3-update-linux.tar.bz2
 
                     if [ $? == 0 ]; then
                         touch ${T}/lichee/rtos/tools/.gcc-arm-melis-eabi-8-2019-q3-update-linux.tar.bz2.flag
